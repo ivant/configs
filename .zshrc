@@ -52,7 +52,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 for config in ~/.zsh/plugins/plugins.zsh $(find ~/.zsh/auto -type f -name '*.zsh' -print); do
-  source $config
+  [ -f $config ] && source $config
 done
 
 insert_sudo() { zle beginning-of-line; zle -U "sudo " }
