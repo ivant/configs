@@ -19,5 +19,6 @@ cleanup-path() {
 }
 
 +path ~/bin
+path+ ~/bazel/output
 
 cleanup-path
