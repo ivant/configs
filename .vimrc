@@ -107,6 +107,7 @@ inoremap <Leader>g <C-O>:YcmCompleter GoToImprecise<CR>
 let g:ycm_complete_in_comments=1
 
 let g:session_autoload='no'
+let g:session_autosave='no'
 
 colorscheme darkblue
 
