@@ -1,0 +1,56 @@
+# vanya prompt theme
+
+autoload -Uz vcs_info window_title
+
+prompt_vanya_help () {
+  cat <<'EOF'
+Prompt that includes curent VCS info in the prompt.
+
+This prompt is color-scheme-able.  You can invoke it thus:
+
+  prompt vanya [<branch-color> [<action-color> [<path-color> [user-host-color]]]]
+
+where the colors are for the branch name (e.g. "master¹²"), current git action
+(e.g. "(rebase-i)"), current working directory, and user@host string. The
+default colors are green, cyan, yellow, and white.
+
+This theme works best with a dark background.
+
+EOF
+}
+
+prompt_vanya_setup () {
+  local branch_color="${1:-green}"
+  local action_color="${2:-cyan}"
+  local path_color="${3:-yellow}"
+  local user_host_color="${4:-white}"
+  local bracket_color=magenta
+  local error_color=red
+
+  zstyle ':vcs_info:*' enable git 
+#  zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+#  zstyle ':vcs_info:*' formats       '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+  local bracket_open="%F{$bracket_color}[%f"
+  local bracket_close="%F{$bracket_color}]%f"
+  local vertical_bar="%F{$bracket_color}|%f"
+  zstyle ':vcs_info:*' actionformats "${bracket_open}%F{$branch_color}%b%u%c%f%B${vertical_bar}%%b%F{$action_color}%a%f${bracket_close} "
+  zstyle ':vcs_info:*' formats       "${bracket_open}%F{$branch_color}%b%u%c%f${bracket_close} "
+  zstyle ':vcs_info:*' nvcsformats   ''
+  zstyle ':vcs_info:*' unstagedstr   '¹'  # display ¹ if there are unstaged changes
+  zstyle ':vcs_info:*' stagedstr     '²'  # display ² if there are staged changes
+
+  local user_host="%B%F{${user_host_color}}%n%b@%B%m%b%f"
+
+  PROMPT='${vcs_info_msg_0_}%F{'$path_color'}%~%f %B%#%b '
+  RPROMPT="%(?..%F{$error_color}[%?]%f )(${user_host})"
+
+  add-zsh-hook precmd prompt_vanya_precmd
+}
+
+prompt_vanya_precmd () {
+  setopt noxtrace local_options
+#  window_title "${PWD/#$HOME/~}" "%m(%8<...<%~)"
+  vcs_info
+}
+
+prompt_vanya_setup "$@"

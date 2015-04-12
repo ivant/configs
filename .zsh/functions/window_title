@@ -1,0 +1,21 @@
+# Window title changing
+function window_title() {
+  # escape '%' chars in $1, make nonprintables visible
+  local a=${(V)1//\%/\%\%}
+
+  # Truncate command, and join lines.
+  a=$(print -Pn "%40>...>$a" | tr -d "\n")
+
+  case $TERM in
+    screen*)
+      print -Pn "\e]2;$a @ $2\a" # plain xterm title
+      print -Pn "\ek$2\e\\" # screen title (in ^A")
+      print -Pn "\e_$2 \e\\" # screen location
+      ;;
+    xterm*|rxvt*)
+      print -Pn "\e]2;$a @ $2\a" # plain xterm title
+      ;;
+  esac
+}
+
+window_title "@"
