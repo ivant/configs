@@ -1,7 +1,9 @@
 #!/bin/sh
 set -e
-add-apt-repository "deb http://archive.canonical.com/ubuntu $(lsb_release -sc) partner"
-apt-get install \
+sudo add-apt-repository "deb http://archive.canonical.com/ubuntu $(lsb_release -sc) partner"
+sudo apt-get update
+sudo apt-get install \
+    --no-install-suggests --no-install-recommends \
     libc6-i386 \
     aptitude apt-file \
     vim zsh git tig tmux \
@@ -13,9 +15,12 @@ apt-get install \
     google-cloud-sdk \
     libarchive-dev zlib1g-dev
 
+owner=$(stat -c %U $0)
+group=$(stat -c %G $0)
+
 git clone git@github.com:ivant/configs.git /tmp/configs
-rsync -av --ignore-existing /tmp/configs/ ~/
+rsync -av --ignore-existing --chown=${owner}:${group} /tmp/configs/ ~/
 rm -rf /tmp/configs/
 
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+[ -d ~/.vim/bundle/Vundle.vim ] || git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
