@@ -3,7 +3,7 @@
 }
 
 path+() {
-  [ -d "$d" ] && path+="$1"
+  [ -d "$1" ] && path+="$1"
 }
 
 cleanup-path() {
