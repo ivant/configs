@@ -15,11 +15,8 @@ sudo apt-get install \
     google-cloud-sdk \
     libarchive-dev zlib1g-dev
 
-owner=$(stat -c %U $0)
-group=$(stat -c %G $0)
-
 git clone git@github.com:ivant/configs.git /tmp/configs
-rsync -av --ignore-existing --chown=${owner}:${group} /tmp/configs/ ~/
+rsync -av --ignore-existing --chown=${USER}:${USER} /tmp/configs/ ~/
 rm -rf /tmp/configs/
 
 [ -d ~/.vim/bundle/Vundle.vim ] || git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
