@@ -1,5 +1,6 @@
 #!/bin/sh
 set -e
+set -x
 sudo add-apt-repository "deb http://archive.canonical.com/ubuntu $(lsb_release -sc) partner"
 sudo apt-get update
 sudo apt-get install \
@@ -8,12 +9,16 @@ sudo apt-get install \
     aptitude apt-file \
     vim zsh git tig tmux \
     wget curl htop unzip zip rsync \
-    silversearcher-ag socat reptyr pv \
+    silversearcher-ag socat reptyr pv webfsd \
     clang llvm llvm-dev make gdb cgdb g++ \
     autoconf automake libtool pkg-config \
     openjdk-8-jdk openjdk-8-source \
     google-cloud-sdk \
     libarchive-dev zlib1g-dev
+
+# Disable autostart of webfsd
+sudo update-rc.d webfs disable 2 3 4 5
+sudo /etc/init.d/webfsd stop
 
 git clone git@github.com:ivant/configs.git /tmp/configs
 rsync -av --ignore-existing --chown=${USER}:${USER} /tmp/configs/ ~/
