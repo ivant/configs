@@ -26,3 +26,6 @@ sudo chsh -s /bin/zsh $USER
 
 best_vim="$(update-alternatives --query vim | grep Best: | cut -f 2 -d ' ')"
 sudo update-alternatives --set editor "$best_vim"
+
+# Set local timezone to US/Pacific
+sudo ln -f -s /usr/share/zoneinfo/US/Pacific /etc/localtime
