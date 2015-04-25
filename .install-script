@@ -23,3 +23,6 @@ rm -rf /tmp/configs/
 vim +PluginInstall +qall
 
 sudo chsh -s /bin/zsh $USER
+
+best_vim="$(update-alternatives --query vim | grep Best: | cut -f 2 -d ' ')"
+sudo update-alternatives --set editor "$best_vim"

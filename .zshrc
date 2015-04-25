@@ -63,3 +63,5 @@ bindkey -M viins '^s' insert-sudo
 bindkey -M vicmd '^s' insert-sudo
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
+
+EDITOR=vim
