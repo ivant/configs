@@ -22,3 +22,5 @@ cleanup-path() {
 path+ ~/bazel/output
 
 cleanup-path
+
+[ -x ~/nacl_sdk/naclsdk ] && alias naclsdk=~/nacl_sdk/naclsdk
