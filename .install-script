@@ -12,9 +12,11 @@ sudo apt-get install \
     silversearcher-ag socat reptyr pv webfsd \
     clang llvm llvm-dev make gdb cgdb g++ \
     autoconf automake libtool pkg-config \
+    ipython \
     openjdk-8-jdk openjdk-8-source \
     google-cloud-sdk \
-    libarchive-dev zlib1g-dev
+    libarchive-dev zlib1g-dev \
+    lilypond
 
 # Disable autostart of webfsd
 sudo update-rc.d webfs disable 2 3 4 5
