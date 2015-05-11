@@ -63,3 +63,8 @@ bindkey -M viins '^s' insert-sudo
 bindkey -M vicmd '^s' insert-sudo
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
+
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey -M viins '^v' edit-command-line
+bindkey -M vicmd '^v' edit-command-line
