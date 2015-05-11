@@ -1,0 +1,38 @@
+#!/bin/sh
+set -e
+set -x
+sudo add-apt-repository "deb http://archive.canonical.com/ubuntu $(lsb_release -sc) partner"
+sudo apt-get update
+sudo apt-get install \
+    --no-install-suggests --no-install-recommends \
+    libc6-i386 \
+    aptitude apt-file \
+    vim zsh git tig tmux \
+    wget curl htop unzip zip rsync \
+    silversearcher-ag socat reptyr pv webfsd \
+    clang llvm llvm-dev make gdb cgdb g++ \
+    autoconf automake libtool pkg-config \
+    openjdk-8-jdk openjdk-8-source \
+    google-cloud-sdk \
+    libarchive-dev zlib1g-dev
+
+# Disable autostart of webfsd
+sudo update-rc.d webfs disable 2 3 4 5
+sudo /etc/init.d/webfsd stop
+
+git clone git@github.com:ivant/configs.git /tmp/configs
+rsync -av --ignore-existing --chown=${USER}:${USER} /tmp/configs/ ~/
+rm -rf /tmp/configs/
+
+[ -d ~/.aptitude ] && sudo rsync -av --ignore-existing --chown=root:root ~/.aptitude ~root/
+
+[ -d ~/.vim/bundle/Vundle.vim ] || git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
+
+sudo chsh -s /bin/zsh $USER
+
+best_vim="$(update-alternatives --query vim | grep Best: | cut -f 2 -d ' ')"
+sudo update-alternatives --set editor "$best_vim"
+
+# Set local timezone to US/Pacific
+sudo ln -f -s /usr/share/zoneinfo/US/Pacific /etc/localtime

@@ -1,0 +1,5 @@
+[user]
+	email = Ivan.Tarasov@gmail.com
+	name = Ivan Tarasov
+[push]
+	default = simple

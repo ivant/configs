@@ -35,6 +35,7 @@ Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'scrooloose/syntastic'
 Plugin 'fidian/hexmode'
 Plugin 'rking/ag.vim'
+Plugin 'davidzchen/vim-bazel'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -107,6 +108,7 @@ inoremap <Leader>g <C-O>:YcmCompleter GoToImprecise<CR>
 let g:ycm_complete_in_comments=1
 
 let g:session_autoload='no'
+let g:session_autosave='no'
 
 colorscheme darkblue
 
