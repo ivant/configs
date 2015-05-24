@@ -5,6 +5,7 @@ aptitude::UI "";
 aptitude::UI::Menubar-Autohide "true";
 aptitude::UI::Minibuf-Prompts "true";
 aptitude::UI::Minibuf-Download-Bar "true";
+aptitude::UI::Advance-On-Action "true";
 aptitude::Auto-Install "true";
 aptitude::Auto-Fix-Broken "false";
 aptitude::Delete-Unused "true";
