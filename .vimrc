@@ -1,6 +1,9 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" Add Lilypond
+let &rtp=&rtp . ',' . sort(glob('/usr/share/lilypond/[0-9]*/vim/', 0, 1))[-1]
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -86,6 +89,7 @@ cabbr <expr> %% expand('%:p:h')
 au FileType java set foldmethod=syntax foldlevel=1000 colorcolumn=101,102
 au FileType cpp set foldmethod=syntax foldlevel=1000 colorcolumn=81,82
 au FileType python set foldmethod=syntax foldlevel=1000 colorcolumn=81,82 sw=2
+au FileType lilypond set ts=2 sw=2 et foldmethod=indent
 
 let g:ctrlp_extensions = ['buffertag', 'line', 'changes']
 let g:ctrlp_buftag_ctags_bin = '/usr/bin/ctags'
