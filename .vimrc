@@ -100,15 +100,13 @@ let g:ctrlp_custom_ignore = {
   \ }
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .DS_Store
-      \ --ignore "**/*.pyc"
-      \ -g ""'
+  \ --ignore .git
+  \ --ignore .svn
+  \ --ignore .hg
+  \ --ignore .DS_Store
+  \ --ignore "**/*.pyc"
+  \ -g ""'
 
-nnoremap <Leader>g :YcmCompleter GoToImprecise<CR>
-inoremap <Leader>g <C-O>:YcmCompleter GoToImprecise<CR>
 let g:ycm_complete_in_comments=1
 
 let g:session_autoload='no'
