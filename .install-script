@@ -9,18 +9,23 @@ sudo apt-get install \
     aptitude apt-file \
     vim zsh git tig tmux \
     wget curl htop unzip zip rsync \
-    silversearcher-ag socat reptyr pv webfsd \
+    silversearcher-ag socat reptyr pv \
     clang llvm llvm-dev make gdb cgdb g++ \
     autoconf automake libtool pkg-config \
     ipython \
-    openjdk-8-jdk openjdk-8-source \
     google-cloud-sdk \
-    libarchive-dev zlib1g-dev \
-    lilypond
+    libarchive-dev zlib1g-dev
 
-# Disable autostart of webfsd
-sudo update-rc.d webfs disable 2 3 4 5
-sudo /etc/init.d/webfsd stop
+# Install optional packages.
+sudo apt-get install \
+    openjdk-8-jdk openjdk-8-source \
+    lilypond || true
+
+# Install webfsd and disable its autostart.
+if sudo apt-get install webfsd; then
+  sudo update-rc.d webfs disable 2 3 4 5
+  sudo /etc/init.d/webfsd stop
+fi
 
 git clone git@github.com:ivant/configs.git /tmp/configs
 rsync -av --ignore-existing --chown=${USER}:${USER} /tmp/configs/ ~/
@@ -31,7 +36,7 @@ rm -rf /tmp/configs/
 [ -d ~/.vim/bundle/Vundle.vim ] || git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
-sudo chsh -s /bin/zsh $USER
+sudo chsh -s /bin/zsh $USER || true
 
 best_vim="$(update-alternatives --query vim | grep Best: | cut -f 2 -d ' ')"
 sudo update-alternatives --set editor "$best_vim"

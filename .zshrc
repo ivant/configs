@@ -65,3 +65,8 @@ bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
 
 EDITOR=vim
+
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey -M viins '^v' edit-command-line
+bindkey -M vicmd '^v' edit-command-line
