@@ -9,7 +9,7 @@ sudo apt-get install \
     aptitude apt-file \
     vim zsh git tig tmux \
     wget curl htop unzip zip rsync \
-    silversearcher-ag socat reptyr pv \
+    silversearcher-ag socat reptyr pv nmap \
     clang llvm llvm-dev make gdb cgdb g++ \
     autoconf automake libtool pkg-config \
     ipython \
