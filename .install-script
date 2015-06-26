@@ -18,7 +18,7 @@ sudo apt-get install \
 
 # Install optional packages.
 sudo apt-get install \
-    --no-install-suggests --no-install-recommends \
+    --no-install-suggests --no-install-recommends --ignore-missing \
     openjdk-8-jdk openjdk-8-source \
     lilypond || true
 
