@@ -20,6 +20,7 @@ sudo apt-get install \
 sudo apt-get install \
     --no-install-suggests --no-install-recommends --ignore-missing \
     openjdk-8-jdk openjdk-8-source \
+    golang \
     binwalk \
     lilypond || true
 
