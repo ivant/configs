@@ -14,6 +14,7 @@ sudo apt-get install \
     autoconf automake libtool pkg-config \
     ipython \
     google-cloud-sdk \
+    docker.io lxc \
     libarchive-dev zlib1g-dev
 
 # Install optional packages.
@@ -29,6 +30,8 @@ if sudo apt-get install webfsd; then
   sudo update-rc.d webfs disable 2 3 4 5
   sudo /etc/init.d/webfsd stop
 fi
+
+sudo usermod -G docker -a ivan
 
 git clone git@github.com:ivant/configs.git /tmp/configs
 rsync -av --ignore-existing --chown=${USER}:${USER} /tmp/configs/ ~/
