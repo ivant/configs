@@ -60,6 +60,12 @@ source $VIMRUNTIME/macros/matchit.vim
 syntax on
 set ruler
 
+" Store all swap files in ~/.vim/cache.
+if !isdirectory($HOME . "/.vim/cache")
+  call mkdir($HOME . "/.vim/cache", "", 0700)
+endif
+set dir=~/.vim/cache
+
 set hlsearch incsearch ignorecase smartcase
 set ts=2 sw=2 et
 set bs=indent,eol,start
