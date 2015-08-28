@@ -7,7 +7,7 @@ sudo apt-get install \
     --no-install-suggests --no-install-recommends \
     libc6-i386 \
     aptitude apt-file \
-    vim zsh git tig tmux \
+    vim zsh git subversion tig tmux \
     wget curl htop unzip zip rsync \
     silversearcher-ag socat reptyr pv nmap \
     clang llvm llvm-dev make gdb cgdb g++ \
