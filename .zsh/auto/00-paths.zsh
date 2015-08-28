@@ -20,6 +20,11 @@ cleanup-path() {
 
 +path ~/bin
 path+ ~/bazel/output
+path+ ~/chromium/depot_tools
+
+NACL_SDK_ROOT="$(find $HOME/nacl_sdk -maxdepth 1 -type d -name 'pepper_*' | sort -r | head -n 1)"
+[ -d "$NACL_SDK_ROOT" ] || unset NACL_SDK_ROOT
+export NACL_SDK_ROOT
 
 cleanup-path
 
