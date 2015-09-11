@@ -2,7 +2,9 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Add Lilypond
-let &rtp=&rtp . ',' . sort(glob('/usr/share/lilypond/[0-9]*/vim/', 0, 1))[-1]
+if isdirectory('/usr/share/lilypond')
+  let &rtp=&rtp . ',' . sort(glob('/usr/share/lilypond/[0-9]*/vim/', 0, 1))[-1]
+endif
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
