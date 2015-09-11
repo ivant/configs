@@ -41,6 +41,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'fidian/hexmode'
 Plugin 'rking/ag.vim'
 Plugin 'davidzchen/vim-bazel'
+Plugin 'google/vim-colorscheme-primary'
+Plugin 'altercation/vim-colors-solarized'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -88,6 +90,9 @@ set guioptions-=r
 set guioptions-=L
 set guioptions-=R
 
+" See http://superuser.com/a/562423
+set t_ut=
+
 " See http://stackoverflow.com/questions/2158516/vim-delay-before-o-opens-a-new-line
 set timeout timeoutlen=3000 ttimeoutlen=100
 
@@ -121,7 +126,9 @@ let g:ycm_complete_in_comments=1
 let g:session_autoload='no'
 let g:session_autosave='no'
 
-colorscheme darkblue
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
 
 au InsertLeave * set nopaste
 set pastetoggle=<Leader>p
