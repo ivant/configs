@@ -126,9 +126,9 @@ let g:ycm_complete_in_comments=1
 let g:session_autoload='no'
 let g:session_autosave='no'
 
-set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
+set background=dark
 
 au InsertLeave * set nopaste
 set pastetoggle=<Leader>p
