@@ -96,6 +96,7 @@ au FileType java set foldmethod=syntax foldlevel=1000 colorcolumn=101,102
 au FileType cpp set foldmethod=syntax foldlevel=1000 colorcolumn=81,82
 au FileType python set foldmethod=syntax foldlevel=1000 colorcolumn=81,82 sw=2
 au FileType lilypond set ts=2 sw=2 et foldmethod=indent
+au FileType go set foldmethod=syntax foldlevel=1000 colorcolumn=81,82 ts=2 noet
 
 let g:ctrlp_extensions = ['buffertag', 'line', 'changes']
 let g:ctrlp_buftag_ctags_bin = '/usr/bin/ctags'
@@ -119,6 +120,9 @@ let g:session_autoload='no'
 let g:session_autosave='no'
 
 colorscheme darkblue
+
+au InsertLeave * set nopaste
+set pastetoggle=<Leader>p
 
 if filereadable($HOME . "/.vimrc.google")
   source $HOME/.vimrc.google
