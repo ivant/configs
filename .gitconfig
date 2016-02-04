@@ -197,3 +197,5 @@
 [merge]
 	tool = diffuse
 	conflictstyle = diff3
+[credential]
+	helper = cache --timeout=360000

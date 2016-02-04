@@ -122,6 +122,8 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
   \ -g ""'
 
 let g:ycm_complete_in_comments=1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
 let g:session_autoload='no'
 let g:session_autosave='no'
@@ -132,6 +134,20 @@ set background=dark
 
 au InsertLeave * set nopaste
 set pastetoggle=<Leader>p
+
+" q: :call ConvertHexLineToSRec()k0i; jj0
+function! ConvertHexLineToSRec()
+  let l:str = getline('.')
+  let l:chksum = 0
+  let l:cstr = str
+  while l:cstr != ""
+    let l:chksum = l:chksum + ('0x' . l:cstr[0:1])
+    let l:cstr = l:cstr[2:]
+  endwhile
+  let l:len = len(l:str)/2 + 1
+  let l:chksum = xor(0xff, (l:len + l:chksum) % 0x100)
+  exe 'normal! o' . printf('S1%02X%s%02X', l:len, l:str, l:chksum)
+endfunction
 
 if filereadable($HOME . "/.vimrc.google")
   source $HOME/.vimrc.google
