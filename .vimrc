@@ -43,6 +43,18 @@ Plugin 'rking/ag.vim'
 Plugin 'davidzchen/vim-bazel'
 Plugin 'google/vim-colorscheme-primary'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'wincent/command-t'
+Plugin 'bogado/file-line'
+Plugin 'haya14busa/vim-poweryank'
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/vim-lsp.vim'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'mhinz/vim-signify'
+Plugin 'tmux-plugins/vim-tmux-focus-events'
+Plugin 'ludovicchabant/vim-lawrencium'
+Plugin 'sjl/splice.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -83,7 +95,6 @@ set formatoptions=croql1j
 
 set wildmenu wildmode=list:longest,full
 set title
-set ruler
 
 set guioptions-=l
 set guioptions-=r
@@ -135,19 +146,8 @@ set background=dark
 au InsertLeave * set nopaste
 set pastetoggle=<Leader>p
 
-" q: :call ConvertHexLineToSRec()k0i; jj0
-function! ConvertHexLineToSRec()
-  let l:str = getline('.')
-  let l:chksum = 0
-  let l:cstr = str
-  while l:cstr != ""
-    let l:chksum = l:chksum + ('0x' . l:cstr[0:1])
-    let l:cstr = l:cstr[2:]
-  endwhile
-  let l:len = len(l:str)/2 + 1
-  let l:chksum = xor(0xff, (l:len + l:chksum) % 0x100)
-  exe 'normal! o' . printf('S1%02X%s%02X', l:len, l:str, l:chksum)
-endfunction
+map <Leader>y <Plug>(operator-poweryank-osc52)
+nmap <Leader>d :SignifyToggleHighlight<C-M>
 
 if filereadable($HOME . "/.vimrc.google")
   source $HOME/.vimrc.google
