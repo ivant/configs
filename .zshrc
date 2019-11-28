@@ -1,6 +1,5 @@
 fpath=(~/.zsh/functions ~/.zsh/completion $fpath)
 
-# Set up the prompt
 autoload -Uz promptinit
 promptinit
 prompt vanya
@@ -17,19 +16,17 @@ colors
 
 bindkey -v
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
-# Use modern completion system
 autoload -Uz compinit
 autoload man_glob multicomp zed slay zmv
 compinit
 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
-# cache-path must exist
+mkdir -p ~/.zsh/cache
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
 zstyle ':completion:*' auto-description 'specify: %d'
@@ -70,3 +67,11 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey -M viins '^v' edit-command-line
 bindkey -M vicmd '^v' edit-command-line
+
+dirname-previous-word () {
+  autoload -U modify-current-argument
+  modify-current-argument '${ARG:h}'
+}
+
+zle -N dirname-previous-word
+bindkey '^[d' dirname-previous-word
