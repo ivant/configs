@@ -1,9 +1,9 @@
 +path() {
-  [ -d "$1" ] && path=("$1" "${path[@]}")
+  [[ -d $1 ]] && path=("$1" "${path[@]}")
 }
 
 path+() {
-  [ -d "$1" ] && path+="$1"
+  [[ -d $1 ]] && path+="$1"
 }
 
 cleanup-path() {
@@ -19,13 +19,5 @@ cleanup-path() {
 }
 
 +path ~/bin
-path+ ~/bazel/output
-path+ ~/chromium/depot_tools
-
-NACL_SDK_ROOT="$(find $HOME/nacl_sdk -maxdepth 1 -type d -name 'pepper_*' 2> /dev/null | sort -r | head -n 1)"
-[ -d "$NACL_SDK_ROOT" ] || unset NACL_SDK_ROOT
-export NACL_SDK_ROOT
 
 cleanup-path
-
-[ -x ~/nacl_sdk/naclsdk ] && alias naclsdk=~/nacl_sdk/naclsdk
